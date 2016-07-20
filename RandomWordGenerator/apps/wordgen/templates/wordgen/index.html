@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Random Word Generator</title>
+	{% load staticfiles %}
+	<link rel="stylesheet" href="{% static 'wordgen/css/base.css' %}"media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+
+	<div class="container">
+		
+		<div class="header">		
+			<h4>Random Word Generator</h4>
+			<ul>
+				<li>&#x21e6;</li>
+				<li>&#x21e8;</li>
+				<li>&#x2716;</li>
+				<li><img src="{% static "wordgen/images/home.png" %}" alt="home icon"></li>			
+			</ul>
+			<input type="text" id="nav" value="http://localhost/3000">
+			<input type="text" id="search">
+		</div>
+
+
+		<div class="main">			
+			<h6 class='datetitle'>Random Word (attempt #{{ attempt_num }})</h6>		
+			<div class='rand_word'>
+				<form action="/generate_word" method='post'>
+					{% csrf_token %}
+					<h2>{{ rand_word }}</h2>
+					<input type="submit" value='Generate'>
+				</form>
+			</div>
+		</div>
+
+
+		<div class="footer"></div>
+	</div>
+</body>
+</html>
