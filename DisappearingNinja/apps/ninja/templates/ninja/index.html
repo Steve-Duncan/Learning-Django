@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Disappearing Ninja</title>
+	{% load staticfiles %}
+	<!-- set static as variable with blank argument, since static requires an argument; Then path can be passed in from views. This is the only way I could find to receive the image path in the img src -->
+	{% static "" as baseUrl %}
+
+	<link rel="stylesheet" href="{% static 'ninja/css/base.css' %}"media="screen" title="no title"  charset="utf-8">
+</head>
+<body>
+	<!-- check if value has been passed for image path and render image if so; otherwise render message -->
+	{% if turtle %}
+		<img src="{{ baseUrl }}{{ turtle }}"></img>
+	{% else %}
+		<h1>{{ msg }}</h1>
+	{% endif %}
+
+</body>
+</html>
