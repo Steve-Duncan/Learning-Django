@@ -1,0 +1,53 @@
+{% extends 'course_mgmt/base.html' %}
+{% load staticfiles %}
+
+{% block title %}Courses Index Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'course_mgmt/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}Add a student to all bootcamp courses{% endblock %}
+
+{% block content %}
+	<form action="/create" method='post' id='add_course'>
+		{% csrf_token %}
+		<h3>Add a new course</h3>
+		<div>
+			<label for="course_name" class='label'>Name:</label>
+			<input type="text" class='data_input' name='course_name'>
+		</div>
+		<div>
+			<label for="course_desc" class='label'>Description:</label>
+			<textarea name="course_desc" class='data_input' id="course_desc"></textarea>
+			<input type="submit" value='Add' id='add'>
+		</div>
+		
+
+	</form>
+	<div class="courses">
+		<h3>Courses</h3>
+		<table>
+			<tr>
+				<th>Course Name</th>
+				<th>Description</th>
+				<th>Date Added</th>
+				<th>Actions</th>
+			</tr>
+			{% for course in courses %}
+				<tr>
+					<td>{{ course.course_name }}</td>
+					<td>{{ course.description }}</td>
+					<td>{{ course.created_at }}</td>
+					<td><form action="/remove/{{ course.id }}" method='get'>
+						<input type="submit" value='remove'>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+
+	</div>
+{% endblock %}

@@ -1,0 +1,55 @@
+h3{
+	color: blue;
+	margin: 15px 0 10px 0;
+
+}
+#add_course{
+	width: 550px;
+	margin: 0;
+	overflow:hidden
+}
+.data_input{
+	width: 75%;
+	border: 1px solid black;
+	margin-bottom: 10px;
+}
+.title{
+	float: left;
+	display: inline-block;
+	vertical-align: top;
+	border: 1px solid black;
+}
+
+form label{
+	width: 20%;
+	float: left;
+	text-align: left;
+}
+#add_course textarea{
+	height: 75px;
+}
+#add{
+	
+	text-align: center;
+	margin-left: 500px;
+}
+#keep{
+	text-align: center;
+	margin-left: 350px;
+}
+#del{
+	background-color: red;
+	padding: 5px 15px;
+}
+#keep{
+	background-color: silver;
+	padding: 5px 10px;
+}
+table{
+	width: 100%;
+	border-collapse: collapse;
+}
+tr, th{
+	border: 1px solid black;
+	
+}
