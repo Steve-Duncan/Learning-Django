@@ -8,6 +8,10 @@ class Course(models.Model):
 	created_at = models.DateTimeField(auto_now_add=True)
 	updated_at = models.DateTimeField(auto_now=True)
 
-
+class Comment(models.Model):
+	course = models.ForeignKey(Course)
+	comment = models.TextField(max_length=255)
+	created_at = models.DateTimeField(auto_now_add=True)
+	updated_at = models.DateTimeField(auto_now=True)
 
 

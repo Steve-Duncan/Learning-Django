@@ -1,0 +1,54 @@
+{% extends 'course_mgmt/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Courses Comment Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<!-- block.super adds this link to base template instead of overwriting the inherited link -->
+	<link rel="stylesheet" href="{% static 'course_mgmt/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}Course comments{% endblock %}
+
+{% block content %}
+
+	<!-- this form adds comment to a course -->
+	<form action="/add_comment/{{ id }}" method='post' id='add_comment'>
+		{% csrf_token %}
+		<div>
+			<label for="course_name" class='label'>Name:</label>
+			<input type="text" class='data_input' name='course_name' value='{{ course }}'>
+		</div>
+		<div>
+			<label for="course_desc" class='label'>Description:</label>		
+			<textarea name="course_desc" class='data_input' id="course_desc" value='{{ description }}'>{{ description|safe }}</textarea>
+		</div>
+		<div>
+			<label for="comment" class='label'>Comment:</label>
+			<textarea name="comment_text" class='data_input' id="comment"></textarea>
+			<h3>Add comment to this course?</h3>
+			<!-- submit buttons to add comment or return to index page -->
+			<input type="submit" name='comment' value='Add comment' id='add'>
+			<input type="submit" name='no_comment' value='Return' id='return'>
+		</div>
+	</form>
+
+	<h4 id='comment_title'>Comments:</h4>
+	{% for comment in course.comment_set.all %}
+		<!-- add a delete button to each comment -->
+		<form action="/delete_comment/{{ comment.id }}" method='get' class='frm_comment'>
+			{% csrf_token %}
+			<div class='comment'>
+				{{ comment.comment }} 
+			</div>
+			<div class='del_comment'>
+				<input type="submit" value='Delete'>
+			</div>			
+		</form>
+
+	{% endfor %}
+{% endblock %}
+

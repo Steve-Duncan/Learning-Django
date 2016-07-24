@@ -1,8 +1,10 @@
-h3{
-	color: blue;
-	margin: 15px 0 10px 0;
+/*This styles the main section of the pages. The header and footer sections on the base.html
+are styled by the base.css file*/
 
+h3{
+	margin: 15px 0 10px 0;
 }
+
 #add_course{
 	width: 550px;
 	margin: 0;
@@ -28,11 +30,22 @@ form label{
 #add_course textarea{
 	height: 75px;
 }
-#add{
-	
+#btn_add_course{
+	margin-left: 425px;
+	width: 100px;
+	padding: 3px;
 	text-align: center;
-	margin-left: 500px;
 }
+#add{
+	width: 100px;
+	padding: 3px;
+	text-align: center;
+	margin-left: 50px;
+}
+#return{
+	padding: 3px;
+	width: 75px;
+	}
 #keep{
 	text-align: center;
 	margin-left: 350px;
@@ -49,7 +62,45 @@ table{
 	width: 100%;
 	border-collapse: collapse;
 }
-tr, th{
+tr, th, td{
 	border: 1px solid black;
 	
+}
+.actions{
+	display: inline-block;
+	width: 45%;
+	text-align: center;
+
+}
+.actions input{
+	width: 75%;
+	margin-bottom: 3px;
+	color: blue;
+	background: none;
+	border: none;
+	text-decoration: underline;
+}
+
+#comment_title{
+	text-align: left;
+	margin-top: 20px;
+	margin-bottom: 10px;
+
+}
+#add_comment{
+	margin-top: 25px;
+}
+#add_comment h3, #add, #return{
+	display: inline-block;
+	
+}
+
+.comment{
+	min-width: 400px;
+	margin-bottom: 10px;
+	border: 1px solid black;
+
+}
+.comment, .del_comment{
+	display: inline-block;
 }

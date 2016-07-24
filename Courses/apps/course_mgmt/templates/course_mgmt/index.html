@@ -1,4 +1,5 @@
 {% extends 'course_mgmt/base.html' %}
+<!-- this template uses the base.html template for appearance -->
 {% load staticfiles %}
 
 {% block title %}Courses Index Page{% endblock %}
@@ -12,6 +13,7 @@
 {% block templatehead %}Add a student to all bootcamp courses{% endblock %}
 
 {% block content %}
+	<!-- this form is for adding a course -->
 	<form action="/create" method='post' id='add_course'>
 		{% csrf_token %}
 		<h3>Add a new course</h3>
@@ -22,11 +24,11 @@
 		<div>
 			<label for="course_desc" class='label'>Description:</label>
 			<textarea name="course_desc" class='data_input' id="course_desc"></textarea>
-			<input type="submit" value='Add' id='add'>
+			<input type="submit" value='Add' id='btn_add_course'>
 		</div>
-		
-
 	</form>
+
+	<!-- this table displays all courses -->
 	<div class="courses">
 		<h3>Courses</h3>
 		<table>
@@ -37,12 +39,21 @@
 				<th>Actions</th>
 			</tr>
 			{% for course in courses %}
+				<!-- every time a course is displayed, add forms to add comments or delete course -->
 				<tr>
 					<td>{{ course.course_name }}</td>
 					<td>{{ course.description }}</td>
 					<td>{{ course.created_at }}</td>
-					<td><form action="/remove/{{ course.id }}" method='get'>
-						<input type="submit" value='remove'>
+					<td>
+						<!-- this form calls the show comments page -->
+						<form action="/show_comment/{{ course.id }}" method='get' class='actions'>
+							{% csrf_token %}
+							<input type="submit" value='comment'>
+						</form>
+						<!-- this form deletes a course -->
+						<form action="/remove/{{ course.id }}" method='get' class='actions'>
+							{% csrf_token %}
+							<input type="submit" value='remove'>
 						</form>
 					</td>
 				</tr>
