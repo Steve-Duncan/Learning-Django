@@ -1,0 +1,28 @@
+{% extends 'validation/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Email Validation Index Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<!-- block.super allows adding to base template items rather than overwriting them -->
+	<link rel="stylesheet" href="{% static 'validation/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}Email Validation{% endblock %}
+
+{% block content %}
+
+	<h3>{{ msg }}</h3>
+	<form action="/create" method='post'>
+		{% csrf_token %}
+		<p>
+			Email Address:<input type="text" class='email' name='email'>
+		</p>
+		<p><input type="submit" value='Submit'></p>			
+	</form>
+
+{% endblock %}
+

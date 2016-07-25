@@ -1,0 +1,42 @@
+{% extends 'validation/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Email Validation Process Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<!-- block.super allows adding to base template items rather than overwriting them -->
+	<link rel="stylesheet" href="{% static 'validation/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}Results Page{% endblock %}
+
+{% block content %}
+	<h3 class='success {{visible}}'>{{ msg }}</h3>
+
+	<h3 class='address_title'>Email Addresses Entered:</h3>
+	
+	<div class='email_list'>
+		{% for email in emails %}
+			<!-- add delete function to each email address -->
+			<form action="/delete/{{ email.id }}" method='post'>
+				{% csrf_token %}
+				<span class='address'>{{ email.email }}</span>
+				<span class='date'>{{ email.created_at }}</span>
+				<input class='delete' type="submit" value='Delete'>
+			</form>
+		{% endfor %}
+		
+	</div>
+
+	<div class='return' >
+		<!-- This is a return button to return to index page -->
+		<form class='return' action="/" method='post'>
+			{% csrf_token %}
+			<input type="submit" value='Return'>		
+		</form>
+	</div>
+
+{% endblock %}
