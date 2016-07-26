@@ -1,0 +1,35 @@
+/*This styles the main section of the pages. The header and footer sections on the base.html
+are styled by the base.css file*/
+
+form{
+	width: 350px;
+	padding: 5px;
+	padding-right: 100px;
+}
+#form_del{
+	width: 100%;
+}
+
+input{
+	border: 1px solid black;
+}
+input, label{
+	display: inline-block;
+	height: 20px;
+	width: 150px;
+	margin: 1px;
+}
+label{
+	text-align: right;
+	padding-right: 10px;
+}
+.submit{
+	margin-top: 15px;
+	margin-left: 215px;
+	width: 100px;
+}
+
+.login h2, .register h2{
+	margin-left: 25px;
+	margin-top: 25px;
+}

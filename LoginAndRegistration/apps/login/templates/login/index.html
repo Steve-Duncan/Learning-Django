@@ -1,0 +1,40 @@
+{% extends 'login/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Login and Registration Home Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'login/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}Login and Registration Home Page{% endblock %}
+
+{% block content %}
+	<h2>{{ msg }}</h2>
+	<div class="login">
+		<h2>Registration</h2>
+		<form action="/create" method='post'>
+			{% csrf_token %}
+			<label for='first_name'>First name:</label><input type="text" name='first_name'>
+			<label for='last_name'>Last name:</label><input type="text" name='last_name'>
+			<label for='email'>Email:</label><input type="text" name='email'> 
+			<label for='password'>Password:</label><input type="text" name = 'password'>
+			<label for='confirm_pw'>Confirm password:</label><input type="text" name = 'confirm_pw'>
+			<input type="submit" class='submit' value='Register'>
+		</form>
+	</div>
+
+	<div class="register">
+		<h2>Login</h2>
+		<form action="/login" method='post'>
+			{% csrf_token %}
+			<label for='email'>Email:</label><input type="text" name='email'> 
+			<label for='password'>Password:</label><input type="text" name = 'password'>
+			<input type="submit" class='submit' value='Log in'>
+		</form>
+	</div>
+
+{% endblock %}
