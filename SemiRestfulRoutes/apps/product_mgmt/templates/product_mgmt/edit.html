@@ -1,0 +1,42 @@
+{% extends 'product_mgmt/create.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Products Update Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'product_mgmt/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}Edit Product {{ id }} - Semi Restful Route Demo{% endblock %}
+
+{% block content %}
+	<div class="update_product">
+		<h3>Edit Product {{ id }}</h3>
+		<!-- this form updates a product -->
+		<form action="/products/update/{{ id }}" method='post'>
+			{% csrf_token %}
+			<label for="name" value="Name">Name</label><input type="text" name='name' value='{{ name }}'>
+			<label for="description" value="Description">Description</label><input type="text" name="description" value='{{ description }}'>
+			<label for="price" value="Price">Price</label><input type="text" name="price" value='{{ price }}'>
+			<input type="submit" value="Update" id='btn_update'>
+		</form>
+		
+		<!-- this form calls the show products page -->
+		<form action="/products/show/{{ product.id }}" method='get' class='inline'>
+			{% csrf_token %}
+			{% csrf_token %}
+			<input type="submit" value='Show' class='submit_link no_border'>
+		</form>
+		<!-- go back to home page -->
+		<form action="/products" method='get' class='inline'>
+			{% csrf_token %}
+			{% csrf_token %}
+			<input type="submit" value='Back' class='submit_link no_border'>
+		</form>
+	</div>
+	
+
+{% endblock %}

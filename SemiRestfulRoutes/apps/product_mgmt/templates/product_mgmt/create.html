@@ -1,0 +1,33 @@
+{% extends 'product_mgmt/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Products Add Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'product_mgmt/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}Create a new product - Semi Restful Route Demo{% endblock %}
+
+{% block content %}
+	<div class="add_product">
+		<h3>Add a new product</h3>
+		<!-- this form creates a new product -->
+		<form action="/products/create" method='post'>
+			{% csrf_token %}
+			<label for="name" value="Name">Name</label><input type="text" name='name'>
+			<label for="description" value="Description">Description</label><input type="text" name="description">
+			<label for="price" value="Price">Price</label><input type="text" name="price">
+			<input type="submit" value="Create">
+		</form>
+		
+		<!-- go back to home page -->
+		<form action="/products" method='get'>
+			{% csrf_token %}
+			<input type="submit" value='Go back' class='submit_link no_border'>
+		</form>
+	</div>
+{% endblock %}

@@ -1,0 +1,74 @@
+
+h3{
+	margin: 15px 0 10px 0;
+}
+table{
+	width: 100%;
+	border-collapse: collapse;
+	margin-bottom: 25px;
+}
+tr, th, td{
+	border: 1px solid black;
+	padding: 2px;
+
+}
+
+td:last-child{
+	text-align: center;
+}
+.actions{
+	display: inline;
+	margin-left: 15px;
+
+}
+
+.add_product form{
+	width: 350px;
+	padding: 5px;
+	padding-right: 100px;
+}
+.add_product input, label{
+	display: block;
+	height: 20px;
+	width: 350px;
+	margin: 1px;
+}
+.add_product input, .show_product input{
+	border: 1px solid black;
+}
+.add_product input[type='submit']{
+	width: 75px;
+	margin-top: 25px;
+}
+
+.submit_link, .actions input:not(.button){
+	text-decoration: underline;
+	border: none;
+	color: blue;
+	background-color: transparent;
+}
+.no_border{
+	border: none !important;
+	text-align: left;
+}
+.inline{
+	display: inline;
+	width: 30px;
+}
+.show_product input, label{
+	display: block;
+	height: 20px;
+	width: 350px;
+	margin: 1px;
+}
+.show_product form{
+	display: inline-block;
+}
+.update_product input[type='text']{
+	border: 1px solid black;
+}
+
+#btn_update{
+	display: block;
+	margin: 25px 0 25px 0;
+}

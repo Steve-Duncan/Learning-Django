@@ -1,0 +1,38 @@
+{% extends 'product_mgmt/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Product Info Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'product_mgmt/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}All Products - Semi Restful Route Demo{% endblock %}
+
+{% block content %}
+	
+	<h3>Product {{ id }}</h3>
+	<div class="show_product">
+		<h3>Show product id {{ id }}</h3>
+		<label for="name" value="Name">Name</label><input type="text" name='name' value='{{ name }}'>
+		<label for="description" value="Description">Description</label><input type="text" name="description" value='{{ description }}'>
+		<label for="price" value="Price">Price</label><input type="text" name="price" value='{{ price }}'>
+		
+		<!-- this form calls the edit product page -->
+		<form action="/products/edit/{{ id }}" method='get' class='inline'>
+			{% csrf_token %}
+			<input type="submit" value='Edit' class='submit_link no_border'>
+		</form>
+		<!-- go back to home page -->
+		<form action="/products" method='get' class='inline'>
+			{% csrf_token %}
+			<input type="submit" value='Back' class='submit_link no_border'>
+		</form>
+	</div>
+	
+	
+
+{% endblock %}

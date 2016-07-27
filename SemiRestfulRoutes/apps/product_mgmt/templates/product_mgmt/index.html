@@ -1,0 +1,59 @@
+{% extends 'product_mgmt/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Products Home Page{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+	<link rel="stylesheet" href="{% static 'product_mgmt/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+{% endblock %}
+
+{% block templatehead %}All Products - Semi Restful Route Demo{% endblock %}
+
+{% block content %}
+	<div class="produts">
+		<h3>Products</h3>
+		<table>
+			<tr>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Price</th>
+				<th>Actions</th>
+			</tr>
+			{% for product in products %}
+				<!-- every time a product is displayed, add forms to show, edit or remove the product -->
+				<tr>
+					<td>{{ product.name }}</td>
+					<td>{{ product.description }}</td>
+					<td>{{ product.price }}</td>
+					<td>
+						<!-- this form calls the show products page -->
+						<form action="/products/show/{{ product.id }}" method='get' class='actions'>
+							{% csrf_token %}
+							<input type="submit" value='Show'>
+						</form>
+						<!-- this form calls the edit product page -->
+						<form action="/products/edit/{{ product.id }}" method='get' class='actions'>
+							{% csrf_token %}
+							<input type="submit" value='Edit'>
+						</form>
+						<!-- this form deletes a product -->
+						<form action="/products/destroy/{{ product.id }}" method='post' class='actions'>
+							{% csrf_token %}
+							<input type="submit" value='Remove' class='button'>
+						</form>
+					</td>
+				</tr>
+			{% endfor %}
+		</table>
+		<!-- this form creates a new product -->
+		<form action="/products/new">
+			{% csrf_token %}
+			<input type="submit" value='Add a new product' class='submit_link'>
+		</form>
+
+	</div>
+
+{% endblock %}
