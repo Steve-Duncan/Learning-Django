@@ -1,0 +1,96 @@
+{% extends 'quotes/base.html' %}
+<!-- this template uses the base.html template for appearance -->
+{% load staticfiles %}
+
+{% block title %}Home{% endblock %}
+
+<!-- link to css file for this page -->
+{% block link_css%}
+	{{ block.super }}
+
+	<link rel="stylesheet" href="{% static 'quotes/css/styles.css' %}" media="screen" title="no title"  charset="utf-8">
+
+	
+
+
+
+{% endblock %}
+
+{% block templatehead %}Quotes{% endblock %}
+
+{% block content %}
+	<nav class='update_nav'>	
+		<a href="{% url 'logout' %}">Logout</a>
+	</nav>
+	<h3 class='home_h3'>Hello, {{ user.alias }}!</h3>
+
+	<div class="quotes_left">
+		<h4>Quotable Quotes</h4>
+		<!-- dynamically generated quotes here -->
+		{% for quote in quotes %}
+				
+			
+			{% if not quote.favorite %}
+				<div class='addQuote_div'>
+					
+					<p>{{ quote.author }}: {{ quote.quote }}</p>
+					
+					<p><!-- this form adds quote to favorites list -->
+						<form action="{% url 'addFave' quote.id %}">
+
+							{% csrf_token %}
+		
+							<input type="submit" value='Add to My List'>
+						</form>
+					</p>
+					<p>Posted by: <a href="{% url 'showUserQuotes' %}">{{ quote.user_id.alias }}</a></p>
+
+				</div>
+			{% endif %}
+					
+		{% endfor %}
+	</div>
+
+	<div class="quotes_right">
+		<fieldset id='addQuote'>
+			<legend>Your Favorites</legend>
+			
+			<!-- dynamically generated quotes here -->
+			{% for quote in quotes %}
+					
+				
+				{% if quote.favorite %}
+					<div class='addQuote_div'>
+						
+						<p>{{ quote.author }}: {{ quote.quote }}</p>
+						
+						<p><!-- this form adds quote to favorites list -->
+							<form action="{% url 'removeFave' quote.id %}">
+
+								{% csrf_token %}
+			
+								<input type="submit" value='Remove From My List'>
+							</form>
+						</p>
+						<p>Posted by: {{ quote.user_id.alias }}</p>
+
+					</div>
+				{% endif %}
+						
+			{% endfor %}
+		</fieldset>
+	
+		<h4>Contribute a Quote</h4>
+
+		<form action="{% url 'addQuote' %}" method='post'>
+			{% csrf_token %}
+			<label for="author">Quoted by:</label>
+			<input type="text" name='author'>
+			<label for="quote">Message:</label>
+			<textarea name="quote" id="quote" cols="30" rows="10"></textarea>
+			<input type="submit" value='Submit'>
+		</form>
+	</div>
+
+
+{% endblock %}
